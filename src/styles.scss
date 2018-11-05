@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@import url('//fonts.googleapis.com/icon?family=Material+Icons');
+
+@include mat-core();
+
+$sigecu-app-primary: mat-palette($mat-blue-gray, 700);
+$sigecu-app-accent:  mat-palette($mat-orange, 500);
+$sigecu-app-warn:    mat-palette($mat-red);
+
+$primary: mat-color($sigecu-app-primary);
+$accent: mat-color($sigecu-app-accent);
+
+$config: mat-typography-config();
+
+$sigecu-app-theme: mat-light-theme($sigecu-app-primary, $sigecu-app-accent, $sigecu-app-warn);
+
+@include angular-material-theme($sigecu-app-theme);
+
+body {
+    font-family: mat-font-family($config);
+    font-weight: normal;
+}
+
+h1, h2, h3, h4 {
+    font-weight: normal;
+}

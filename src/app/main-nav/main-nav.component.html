@@ -1,0 +1,40 @@
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <!--Contenedor estructural para nuestro contenido y sidenav-->
+  <mat-sidenav-container class="example-sidenav-container"
+                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <!--Contenido lateral agregado-->
+    <mat-sidenav class="example-sidenav"
+    #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+        <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <!--Representa el contenido principal-->
+    <mat-sidenav-content>
+      <!--Aquo el toolbar es parte del contenido-->
+      <mat-toolbar class="mat-elevation-z2 example-toolbar">
+        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <h1 class="example-app-name">SIGECU GFI</h1>
+      </mat-toolbar>
+      <!--p>
+        <mat-form-field appearance="fill">
+          <button type="button" mat-icon-button matPrefix matPrefix (click)="hidePass = !hidePass">
+            <mat-icon>{{hidePass ? 'lock' : 'lock_open'}}</mat-icon>
+          </button>
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Enter your password" [type]="hidePass ? 'password' : 'text'">
+          <button type="button" mat-icon-button matSuffix matSuffix (click)="hidePass = !hidePass">
+            <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </p-->
+      <!--p *ngFor="let content of fillerContent">
+        {{content}}
+      </p-->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+  
