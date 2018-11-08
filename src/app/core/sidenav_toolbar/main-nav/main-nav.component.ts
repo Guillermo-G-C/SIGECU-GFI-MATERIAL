@@ -1,7 +1,7 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 
-import {NavItem} from './nav-item';
+import {NavItem} from './../nav-item';
 
 @Component({
   selector: 'app-main-nav',
@@ -9,16 +9,10 @@ import {NavItem} from './nav-item';
   styleUrls: ['./main-nav.component.scss'],
 })
 export class MainNavComponent implements OnDestroy {
+  @ViewChild('appDrawer') appDrawer: ElementRef;
 
   /**SideNav */
   mobileQuery: MediaQueryList;
-
-  fillerContent = Array.from({length: 50}, () =>
-      `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-       labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-       laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-       voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`);
 
   private _mobileQueryListener: () => void;
 
@@ -33,22 +27,47 @@ export class MainNavComponent implements OnDestroy {
   }
   /**SideNav */
 
-
   navSigecu: NavItem[] = [
     {
-      displayName: 'Dashborad Eventos',
-      iconName: 'star_rate',
-      route: 'material-design'
+      displayName: 'Eventos',
+      iconName: 'event',
+      children: [
+        {
+          displayName: 'Dashborad Eventos',
+          iconName: 'dashboard',
+          route: 'material-design'//Pendiente
+        },
+        {
+          displayName: 'Crear Evento',
+          iconName: 'create',
+          route: 'material-design'//Pendiente
+        },
+        {
+          displayName: 'Ver  Listado de Eventos',
+          iconName: 'format_list_bulleted',
+          route: 'material-design'//Pendiente
+        },
+        {
+          displayName: 'Cancelar Eventos',
+          iconName: 'delete',
+          route: 'material-design'//Pendiente
+        }
+      ]
     },
     {
-      displayName: 'Crear Evento',
-      iconName: 'star_rate',
-      route: 'material-design'
+      displayName: 'Cursos',
+      iconName: 'school',
+      children: []
     },
     {
-      displayName: 'Ver Eventos',
-      iconName: 'star_rate',
-      route: 'material-design'
+      displayName: 'Lugares',
+      iconName: 'location_city',
+      children: []
+    },
+    {
+      displayName: 'Instructores',
+      iconName: 'supervisor_account',
+      children: []
     }
   ];
 

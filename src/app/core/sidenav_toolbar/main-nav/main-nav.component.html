@@ -1,4 +1,10 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <!--Aqui el toolbar es parte del contenido-->
+  <mat-toolbar class="mat-elevation-z2 example-toolbar" color="primary">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name">SIGECU GFI</h1>
+  </mat-toolbar>
+
   <!--Contenedor estructural para el contenido y sidenav-->
   <mat-sidenav-container class="example-sidenav-container"
                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
@@ -6,25 +12,18 @@
     <mat-sidenav class="example-sidenav"
     #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-      <mat-toolbar>Menu</mat-toolbar>
       <mat-nav-list>
-        <a *ngFor="let item of navSigecu"
-          mat-list-item
-          routerLink="[item.route]">
+        <app-menu-list-item *ngFor="let item of navSigecu" [item]="item"></app-menu-list-item>
+        <!--a *ngFor="let item of navItems"
+          mat-list-item>
           <mat-icon color="primary">{{item.iconName}}</mat-icon>{{item.displayName}}
-        </a>
+        </a-->
         <!--app-menu-list-item *ngFor="let item of navItems" [item]="item"></app-menu-list-item-->
       </mat-nav-list>
     </mat-sidenav>
 
     <!--Representa el contenido principal-->
     <mat-sidenav-content>
-      <!--Aqui el toolbar es parte del contenido-->
-      <mat-toolbar class="mat-elevation-z2 example-toolbar" color="primary">
-        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-        <h1 class="example-app-name">SIGECU GFI</h1>
-      </mat-toolbar>
-
       <!--View Children-->
       <ng-content></ng-content>
 

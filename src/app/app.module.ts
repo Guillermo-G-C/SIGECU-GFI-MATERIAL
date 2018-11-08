@@ -4,20 +4,28 @@ import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { MaterialModuleModule } from './/material-module.module';
-import { MainNavComponent } from './core/sidenav_toolbar/main-nav/main-nav.component';
+import { MaterialModule } from './material.module';
 import { LayoutModule } from '@angular/cdk/layout';
+import { CoreModule } from './core/core.module';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
+import { EventosModule } from './modules/eventos.module';
+import { EventosRoutingModule } from './modules/eventos-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainNavComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModuleModule,
+    MaterialModule,
     LayoutModule,
+    CoreModule,
+    AppRoutingModule,
+    AuthModule,
+    EventosModule,
+    EventosRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

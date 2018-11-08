@@ -1,0 +1,60 @@
+<mat-card>
+  <mat-card-header color="primary">
+    <mat-icon>person</mat-icon>
+    <br/>
+    <mat-card-title class="card-title-text">SIGECU Login</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="formAuth" (ngSubmit)="onSubmit()" #formLAuth="ngForm">
+      <p>
+        <mat-form-field appearance="fill" color="primary" class="full-width-input">
+          <!--button type="button" mat-icon-button matPrefix color="primary">
+            <mat-icon matPrefix>perm_identity</mat-icon>
+          </button-->
+          <mat-label>UserName</mat-label>
+          <input matInput placeholder="Enter your password" type="text" formControlName="userName" required autocomplete="off">
+          <mat-error *ngIf="isFieldInvalid('userName')">
+            Please inform your user name
+          </mat-error>
+          <button type="button" mat-icon-button matSuffix color="primary">
+            <mat-icon>person</mat-icon>
+          </button>
+        </mat-form-field>
+      </p>
+      <p>
+        <mat-form-field appearance="fill" color="primary" class="full-width-input">
+          <!--button type="button" mat-icon-button matPrefix (click)="hidePass = !hidePass" color="primary">
+            <mat-icon>{{hidePass ? 'lock' : 'lock_open'}}</mat-icon>
+          </button-->
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Enter your password" [type]="hidePass ? 'password' : 'text'" formControlName="password" required>
+          <mat-error *ngIf="isFieldInvalid('userName')">
+            Please inform your password
+          </mat-error>
+          <button type="button" mat-icon-button matSuffix (click)="hidePass = !hidePass" color="primary">
+            <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </p>
+      <p>
+        <button 
+        type="submit"
+          mat-raised-button
+          color="primary"
+          class="full-width-input"
+          [disabled]="!formLAuth.form.valid">SIGN IN</button>
+      </p>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+  </mat-card-actions>
+</mat-card>
+
+<!--
+
+https://auth0.com/blog/creating-beautiful-apps-with-angular-material/
+https://loiane.com/2017/08/angular-hide-navbar-login-page/
+https://www.devglan.com/angular/angular-hide-sidenav-login-page
+https://community.alfresco.com/community/application-development-framework/blog/2017/12/15/adding-navigation-menu-toolbar-and-logout-to-your-adf-20-app
+
+-->

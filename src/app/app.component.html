@@ -1,14 +1,3 @@
 <app-main-nav>
-  <p>
-    <mat-form-field appearance="fill" color="primary">
-      <button type="button" mat-icon-button matPrefix matPrefix (click)="hidePass = !hidePass" color="primary">
-        <mat-icon>{{hidePass ? 'lock' : 'lock_open'}}</mat-icon>
-      </button>
-      <mat-label>Password</mat-label>
-      <input matInput placeholder="Enter your password" [type]="hidePass ? 'password' : 'text'">
-      <button type="button" mat-icon-button matSuffix matSuffix (click)="hidePass = !hidePass" color="primary">
-        <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
-    </mat-form-field>
-  </p>
+  <router-outlet></router-outlet>
 </app-main-nav>
