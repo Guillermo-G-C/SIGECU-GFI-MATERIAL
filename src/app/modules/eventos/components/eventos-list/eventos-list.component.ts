@@ -22,7 +22,7 @@ export class EventosListComponent implements OnInit {
   }
 
   reloadData(){
-    this.eventos = this.eventosServices.getEventosList();
+    //this.eventos = this.eventosServices.getEventosList();
   }
 
 }

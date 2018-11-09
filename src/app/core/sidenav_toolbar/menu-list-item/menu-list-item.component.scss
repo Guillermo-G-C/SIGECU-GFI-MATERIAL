@@ -6,7 +6,8 @@
   outline: none;
 
   .mat-list-item.active {
-    background-color: mat-color($sigecu-app-primary);
+    border-left: 3px solid mat-color($sigecu-app-primary, 100); 
+    background-color: mat-color($sigecu-app-primary, 900);
   }
   &:hover,
   &:focus {
@@ -22,4 +23,8 @@
   .routeIcon {
     margin-right: 40px;
   }
+}
+
+.childItem{ 
+  background-color: mat-color($sigecu-app-primary, 900) !important;
 }

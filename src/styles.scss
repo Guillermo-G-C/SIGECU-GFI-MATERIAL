@@ -4,18 +4,26 @@
 
 @include mat-core();
 
-$sigecu-app-primary: mat-palette($mat-blue-gray, 700);
+$sigecu-app-primary: mat-palette($mat-blue-gray, 800);
 $sigecu-app-accent:  mat-palette($mat-orange, 500);
 $sigecu-app-warn:    mat-palette($mat-red);
-
-$primary: mat-color($sigecu-app-primary);
-$accent: mat-color($sigecu-app-accent);
 
 $config: mat-typography-config();
 
 $sigecu-app-theme: mat-light-theme($sigecu-app-primary, $sigecu-app-accent, $sigecu-app-warn);
 
 @include angular-material-theme($sigecu-app-theme);
+
+// Define an alternate dark theme.
+$the-dark-theme: mat-dark-theme($sigecu-app-primary, $sigecu-app-accent, $sigecu-app-warn);
+
+.the-dark-theme {
+    @include angular-material-theme($the-dark-theme);
+    /*$background: map-get($the-dark-theme, background);
+    background-color: mat-color($background, background);*/
+    $background: map-get($the-dark-theme, primary);
+    background-color: mat-color($background);
+}
 
 body {
     font-family: mat-font-family($config);
@@ -25,3 +33,44 @@ body {
 h1, h2, h3, h4 {
     font-weight: normal;
 }
+
+/******************************************/
+/*@mixin mat-sidenav-theme($sigecu-app-theme) {
+    $primary: map-get($sigecu-app-theme, primary);
+    $accent: map-get($sigecu-app-theme, accent);
+    $warn: map-get($sigecu-app-theme, warn);
+    $background: map-get($sigecu-app-theme, background);
+    $foreground: map-get($sigecu-app-theme, foreground);
+  
+    // We use invert() here to have the darken the background color expected to be used. If the
+    // background is light, we use a dark backdrop. If the background is dark, 
+    // we use a light backdrop.
+    $sidenav-backdrop-color: invert(mat-color($background, card, 0.6)) !default;
+    $sidenav-background-color: mat-color($background, dialog) !default;
+    $sidenav-container-background-color:  mat-color($background, background) !default;
+    $sidenav-push-background-color: mat-color($background, dialog) !default;
+  
+    .mat-sidenav-container {
+      background-color: $sidenav-container-background-color;
+      color: mat-color($foreground, text);
+    }
+  
+    .mat-sidenav {
+      background-color: $sidenav-background-color;
+      color: mat-color($foreground, text);
+  
+      &.mat-sidenav-push {
+        background-color: $sidenav-push-background-color;
+      }
+    }
+  
+    .mat-sidenav-backdrop.mat-sidenav-shown {
+      background-color: $sidenav-backdrop-color;
+    }
+  }*/
+
+
+  /**
+  https://blog.thoughtram.io/angular/2017/05/23/custom-themes-with-angular-material.html
+  https://github.com/angular/material2/issues/4344
+  */
