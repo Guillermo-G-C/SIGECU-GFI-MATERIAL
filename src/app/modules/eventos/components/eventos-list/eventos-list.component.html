@@ -1,3 +1,9 @@
-<p>
-  eventos-list works!
-</p>
+<ng-container *ngIf="eventos">
+  <!--
+    <div *ngFor="let eventoItem of eventos | async">
+  -->
+  <ng-container *ngFor="let eventoItem of eventos">
+    <app-eventos-details [evento]="eventoItem"></app-eventos-details>
+  </ng-container>
+
+</ng-container>

@@ -1,4 +1,30 @@
-<div *ngIf="evento">
-  {{ evento|json }}
-</div>
-<h1>hola</h1>
+<mat-card class="example-card" *ngIf="evento" id="{{evento.idEventos}}">
+    <mat-card-header>
+      <mat-card-title>{{ evento.c_idcursos }}</mat-card-title>
+      <mat-card-subtitle><b>{{ 'Instructor: '+ evento.i_idinstructor }}</b></mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <p>
+        {{ evento.eDescripcion }}
+      </p>
+      <p>
+        {{evento.ePrograma}}
+      </p>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-footer>
+      <h5>
+        {{ 'Horario: '+ evento.eHorario }}
+        <br>
+        Fecha:  {{evento.eFechaInicio |  date: 'dd MMMM' }} al {{ evento.eFechaTermino | date:'longDate' }}
+        <br>
+        {{ 'Capacidad: '+ evento.eCapacidad }}
+        <br>
+        {{ 'Lugar: ' + evento.l_idlugar }}
+      </h5>
+      <p>
+        <button mat-raised-button color="warn" (click)='deleteEvento()'>Eliminar</button>
+      </p>
+    </mat-card-footer>
+  </mat-card>

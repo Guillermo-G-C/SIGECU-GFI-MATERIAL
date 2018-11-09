@@ -8,7 +8,6 @@ export class Eventos {
     ePrograma: string;
     eHorario: string;
     eCapacidad: string;
-    eTipo: string;
     eEstatus: string;
     l_idlugar: number;
 }

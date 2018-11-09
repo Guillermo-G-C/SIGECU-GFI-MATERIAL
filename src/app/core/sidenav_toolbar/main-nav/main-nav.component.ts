@@ -40,18 +40,18 @@ export class MainNavComponent implements OnDestroy {
         {
           displayName: 'Crear Evento',
           iconName: 'create',
-          route: 'material-design'//Pendiente
+          route: 'addEvento'//Pendiente
         },
         {
           displayName: 'Ver  Listado de Eventos',
           iconName: 'format_list_bulleted',
-          route: 'material-design'//Pendiente
-        },
+          route: 'eventoList'//Pendiente
+        }/*,
         {
           displayName: 'Cancelar Eventos',
           iconName: 'delete',
           route: 'material-design'//Pendiente
-        }
+        }*/
       ]
     },
     {

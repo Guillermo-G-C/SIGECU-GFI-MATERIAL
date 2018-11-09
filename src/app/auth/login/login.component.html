@@ -28,7 +28,7 @@
           </button-->
           <mat-label>Password</mat-label>
           <input matInput placeholder="Enter your password" [type]="hidePass ? 'password' : 'text'" formControlName="password" required>
-          <mat-error *ngIf="isFieldInvalid('userName')">
+          <mat-error *ngIf="isFieldInvalid('password')">
             Please inform your password
           </mat-error>
           <button type="button" mat-icon-button matSuffix (click)="hidePass = !hidePass" color="primary">
@@ -37,12 +37,11 @@
         </mat-form-field>
       </p>
       <p>
-        <button 
-        type="submit"
-          mat-raised-button
-          color="primary"
-          class="full-width-input"
-          [disabled]="!formLAuth.form.valid">SIGN IN</button>
+        <button type="submit"
+                mat-raised-button
+                color="primary"
+                class="full-width-input"
+                [disabled]="!formLAuth.form.valid">SIGN IN</button>
       </p>
     </form>
   </mat-card-content>

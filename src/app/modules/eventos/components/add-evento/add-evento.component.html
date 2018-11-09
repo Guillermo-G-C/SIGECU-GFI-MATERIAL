@@ -1,0 +1,102 @@
+<mat-card>
+    <form #eventoForm="ngForm" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+      <mat-card-header>
+        <mat-card-title><h2>Crear Evento</h2></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <input type="hidden" name="idEventos" formControlName="idEventos">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Curso a impartir</mat-label>
+          <mat-select placeholder="Curso a impartir" formControlName="c_idcursos" required>
+            <mat-option>--</mat-option>
+            <mat-option value="1">Angular 7</mat-option>
+            <mat-option value="2">Spring Boot 2.0</mat-option>
+            <mat-option value="3">Agave</mat-option>
+          </mat-select>
+          <!--mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
+          <mat-hint>{{animalControl.value?.sound}}</mat-hint-->
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Instructor del evento</mat-label>
+          <mat-select placeholder="Instructor del evento" formControlName="i_idinstructor" required>
+            <mat-option>--</mat-option>
+            <mat-option value="1">Israel Palafox Morales</mat-option>
+            <mat-option value="2">Jorge Villanueva Diaz</mat-option>
+            <mat-option value="3">Angel Luna Sol</mat-option>
+          </mat-select>
+          <!--mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
+          <mat-hint>{{animalControl.value?.sound}}</mat-hint-->
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Descripcion del Evento</mat-label>
+          <textarea matInput
+                    required
+                    formControlName="eDescripcion"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Lugar del evento</mat-label>
+          <mat-select placeholder="Lugar del evento" formControlName="l_idlugar" required>
+            <mat-option>--</mat-option>
+            <mat-option value="1">Instalaciones GFI</mat-option>
+            <mat-option value="2">CTOS Santander</mat-option>
+            <mat-option value="3">Otro</mat-option>
+          </mat-select>
+          <!--mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
+          <mat-hint>{{animalControl.value?.sound}}</mat-hint-->
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Programa del Evento</mat-label>
+          <textarea matInput
+                    required
+                    formControlName="ePrograma"></textarea>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha de Inicio</mat-label>
+          <input matInput [matDatepicker]="fechaInicio" placeholder="Fecha de Inicio" formControlName="eFechaInicio" required>
+          <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
+          <mat-datepicker #fechaInicio></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Fecha de Termino</mat-label>
+          <input matInput [matDatepicker]="fechaTermino" placeholder="Fecha de Termino" formControlName="eFechaTermino" required>
+          <mat-datepicker-toggle matSuffix [for]="fechaTermino"></mat-datepicker-toggle>
+          <mat-datepicker #fechaTermino></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Horario</mat-label>
+          <input matInput placeholder="Horario del evento" formControlName="eHorario" type="time" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Capacidad</mat-label>
+          <input matInput placeholder="Capacidad del evento" formControlName="eCapacidad" type="number" required>
+        </mat-form-field>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit"
+                >Save</button>        
+        <!--button mat-raised-button color="primary" type="submit"
+        [disabled]="!eventoForm.form.valid">Save</button-->
+      </mat-card-actions>
+      <mat-card-footer>
+      </mat-card-footer>
+    </form>
+
+    <p>
+      Form Value: {{ addForm.value | json }}
+    </p>
+
+    <p>
+      Form Status: {{ addForm.status }}
+    </p>
+    
+  </mat-card>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -11,6 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { EventosModule } from './modules/eventos.module';
 import { EventosRoutingModule } from './modules/eventos-routing.module';
+
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [
@@ -27,7 +31,9 @@ import { EventosRoutingModule } from './modules/eventos-routing.module';
     EventosModule,
     EventosRoutingModule,
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'es-MX' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
