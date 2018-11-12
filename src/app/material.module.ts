@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
   MatAutocompleteModule,
@@ -77,7 +78,13 @@ const matLibrary = [
 ];
 
 @NgModule({
-  imports: matLibrary,
-  exports: matLibrary
+  imports: [
+    FlexLayoutModule,
+    matLibrary
+  ],
+  exports: [
+    FlexLayoutModule,
+    matLibrary
+  ],
 })
 export class MaterialModule { }

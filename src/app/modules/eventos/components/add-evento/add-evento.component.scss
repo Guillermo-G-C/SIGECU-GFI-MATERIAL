@@ -1,0 +1,6 @@
+@import '~@angular/material/theming';
+@import '../../../../../styles.scss';
+
+.error {
+    color: mat-color($sigecu-app-warn);
+} 

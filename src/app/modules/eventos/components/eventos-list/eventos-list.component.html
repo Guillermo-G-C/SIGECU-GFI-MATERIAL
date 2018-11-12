@@ -1,9 +1,18 @@
-<ng-container *ngIf="eventos">
+<div  class="container"
+      fxLayout="row wrap"
+      fxLayoutAlign="space-evenly stretch"
+      style="margin-top: 1em">
   <!--
     <div *ngFor="let eventoItem of eventos | async">
   -->
-  <ng-container *ngFor="let eventoItem of eventos">
-    <app-eventos-details [evento]="eventoItem"></app-eventos-details>
+  <ng-container *ngIf="eventos">
+    <!--app-eventos-details *ngFor="let eventoItem of eventos " [evento]="eventoItem" 
+      fxFlex="0 1 calc(33% - 1em)"
+      fxFlex.lt-md="0 1 calc(50% - 1em)"
+      fxFlex.lt-sm="0 1 calc(100% - 1em)"
+      style="margin-bottom: 1em"></app-eventos-details-->
+      <app-eventos-details *ngFor="let eventoItem of eventos " [evento]="eventoItem" 
+      fxFlex = " 50% "  fxFlex.gt-sm = " 100% "
+      style="margin-bottom: 1em"></app-eventos-details>
   </ng-container>
-
-</ng-container>
+</div>
