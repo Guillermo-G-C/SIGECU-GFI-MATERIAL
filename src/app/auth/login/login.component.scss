@@ -2,7 +2,7 @@
 @import '../../../styles.scss';
 
 mat-card {
-    max-width: 350px;
+   // max-width: 350px;
     margin: 2em auto;
     padding: 0;
 }
@@ -20,7 +20,7 @@ mat-card-header{
 }*/
 
 mat-card-content{
-    padding: 32px 32px;
+    padding:  2em;
 }
 
 .full-width-input {

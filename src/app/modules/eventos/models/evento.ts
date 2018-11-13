@@ -1,4 +1,4 @@
-export class Eventos {
+export class Evento {
     idEventos: number;
     c_idcursos: number;
     i_idinstructor: number;

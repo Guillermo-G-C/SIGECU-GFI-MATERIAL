@@ -1,28 +1,30 @@
 <div  fxLayout="row wrap" 
-      fxLayoutAlign="center center"
-      fxLayoutAlign.lt-sm="none">
-  <mat-card fxFlex = " 75% "
-            fxFlex.gt-sm = " 100% ">
+      fxLayoutAlign="space-evenly stretch"
+      style="margin-top: 1em">
+      
+  <mat-card fxFlex="0 1 calc(75% - 1em)"
+            fxFlex.lt-md = "0 1 calc(100% - 2em)">
     <form #eventoForm="ngForm" [formGroup]="addForm" (ngSubmit)="onSubmit()">
       <mat-card-header>
         <mat-card-title><h2>Crear Evento</h2></mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <input type="hidden" name="idEventos" formControlName="idEventos">
+      <mat-card-content fxLayout="row wrap"
+                        fxLayout.lt-md="column"
+                        fxLayoutAlign="space-evenly stretch">
+        <input type="hidden" formControlName="idEvento">
   
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" fxFlex = "0 1 calc(50% - 1em)">
           <mat-label>Curso a impartir</mat-label>
-          <mat-select placeholder="Curso a impartir" formControlName="c_idcursos" required>
+          <mat-select placeholder="Curso a impartir" formControlName="c_idcurso" required>
             <mat-option>-Selecciona-</mat-option>
             <mat-option value="1">Angular 7</mat-option>
             <mat-option value="2">Spring Boot 2.0</mat-option>
             <mat-option value="3">Agave</mat-option>
           </mat-select>
-          <!--mat-error *ngIf="c_idcursos.hasError('required')">Please choose an c_idcursos</mat-error>
-          <mat-hint>{{animalControl.value?.sound}}</mat-hint-->
+          <!--mat-error *ngIf="c_idcursos.hasError('required')">Please choose an c_idcursos</mat-error-->
         </mat-form-field>
   
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" fxFlex = "0 1 calc(50% - 1em)">
           <mat-label>Instructor del evento</mat-label>
           <mat-select placeholder="Instructor del evento" formControlName="i_idinstructor" required>
             <mat-option>--</mat-option>
@@ -33,14 +35,45 @@
           <!--mat-hint>{{animalControl.value?.sound}}</mat-hint-->
         </mat-form-field>
   
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" fxFlex = "0 1 calc(100% - 1em)">
           <mat-label>Descripcion del Evento</mat-label>
           <textarea matInput
                     required
                     formControlName="eDescripcion"></textarea>
         </mat-form-field>
-  
-        <mat-form-field appearance="fill">
+
+        <mat-form-field appearance="fill" fxFlex = "0 1 calc(100% - 1em)">
+          <mat-label>Programa del Evento</mat-label>
+          <textarea matInput
+                    required
+                    formControlName="ePrograma"></textarea>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill" fxFlex = "0 1 calc(100% - 1em)">
+          <mat-label>Fecha de Inicio</mat-label>
+          <input matInput [matDatepicker]="fechaInicio" (focus)="fechaInicio.open()" placeholder="Fecha de Inicio" formControlName="eFechaInicio" required>
+          <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
+          <mat-datepicker #fechaInicio (closed)="input.blur()"></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill" fxFlex = "0 1 calc(100% - 1em)">
+          <mat-label>Fecha de Termino</mat-label>
+          <input matInput [matDatepicker]="fechaTermino" (focus)="fechaTermino.open()" placeholder="Fecha de Termino" formControlName="eFechaTermino" required>
+          <mat-datepicker-toggle matSuffix [for]="fechaTermino"></mat-datepicker-toggle>
+          <mat-datepicker #fechaTermino (closed)="input.blur()"></mat-datepicker>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill" appearance="fill" fxFlex = "0 1 calc(50% - 1em)">
+          <mat-label>Hora de Entrada</mat-label>
+          <input matInput placeholder="Horario del evento" formControlName="eHorario" type="time" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" appearance="fill" fxFlex = "0 1 calc(50% - 1em)">
+          <mat-label>Hora de Entrada</mat-label>
+          <input matInput placeholder="Horario del evento" formControlName="eHorario" type="time" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" fxFlex = "0 1 calc(50% - 1em)">
           <mat-label>Lugar del evento</mat-label>
           <mat-select placeholder="Lugar del evento" formControlName="l_idlugar" required>
             <mat-option>--</mat-option>
@@ -51,65 +84,41 @@
           <!--mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
           <mat-hint>{{animalControl.value?.sound}}</mat-hint-->
         </mat-form-field>
-  
-        <mat-form-field appearance="fill">
-          <mat-label>Programa del Evento</mat-label>
-          <textarea matInput
-                    required
-                    formControlName="ePrograma"></textarea>
-        </mat-form-field>
-        
-        <mat-form-field appearance="fill">
-          <mat-label>Fecha de Inicio</mat-label>
-          <input matInput [matDatepicker]="fechaInicio" (focus)="fechaInicio.open()" placeholder="Fecha de Inicio" formControlName="eFechaInicio" required>
-          <mat-datepicker-toggle matSuffix [for]="fechaInicio"></mat-datepicker-toggle>
-          <mat-datepicker #fechaInicio (closed)="input.blur()"></mat-datepicker>
-        </mat-form-field>
-  
-        <mat-form-field appearance="fill">
-          <mat-label>Fecha de Termino</mat-label>
-          <input matInput [matDatepicker]="fechaTermino" (focus)="fechaTermino.open()" placeholder="Fecha de Termino" formControlName="eFechaTermino" required>
-          <mat-datepicker-toggle matSuffix [for]="fechaTermino"></mat-datepicker-toggle>
-          <mat-datepicker #fechaTermino (closed)="input.blur()"></mat-datepicker>
-        </mat-form-field>
-  
-        <mat-form-field appearance="fill">
-          <mat-label>Hora de Entrada</mat-label>
-          <input matInput placeholder="Horario del evento" formControlName="eHorario" type="time" required>
-        </mat-form-field>
-  
-        <mat-form-field appearance="fill">
+
+        <mat-form-field appearance="fill" fxFlex = "0 1 calc(50% - 1em)">
           <mat-label>Capacidad</mat-label>
           <input matInput placeholder="Capacidad del evento" formControlName="eCapacidad" type="number" required>
         </mat-form-field>
         
-        <p>
+        <p fxFlex = "0 1 calc(25% - 1em)">
           <!--mat-radio-group formControlName="eEstatus" required>  
             <mat-radio-button value="true">Activo</mat-radio-button>  
             <mat-radio-button value="false">Inactivo</mat-radio-button>  
           </mat-radio-group-->
           <mat-checkbox [color]="addForm.get('eEstatus').value == true ? 'accent' : 'primary'" formControlName="eEstatus" indeterminate="true" required>Estatus Del Evento</mat-checkbox>
           <mat-error *ngIf="addForm.get('eEstatus').invalid && isValidFormSubmitted != null && !isValidFormSubmitted">  
-            <span [hidden]="!addForm.get('eEstatus').value == ''">Please select any eEstatus !!!</span>  
+            <span [hidden]="!addForm.get('eEstatus').value =='' && addForm.get('eEstatus').value == false">Please select any eEstatus !!!</span>  
           </mat-error>
         </p>
-  
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" type="submit"
-                >Save</button>
+      <mat-divider></mat-divider>  
+      <mat-card-actions fxLayout="row wrap"
+                        fxLayoutAlign="space-evenly stretch">
+        <button mat-raised-button type="reset" fxFlex = "0 1 calc(25% - 1em)"
+                (click)="revert()"
+                [disabled]="addForm.pristine">RESET</button>
+        <button mat-raised-button color="primary" type="submit" fxFlex = "0 1 calc(75% - 1em)">CREAR EVENTO</button>
       </mat-card-actions>
       <mat-card-footer>
       </mat-card-footer>
     </form>
-  
-    <p>
-      Form Value: {{ addForm.value | json }}
-    </p>
-  
-    <p>
-      Form Status: {{ addForm.status }}
-    </p>
-    
   </mat-card>
+
+  <p>
+    Form Value: {{ addForm.value | json }}
+  </p>
+  <p>
+    Form Status: {{ addForm.status }}
+  </p>
+
 </div>

@@ -14,15 +14,15 @@
     </mat-card-content>
     <mat-divider></mat-divider>
     <mat-card-footer>
-      <h5>
-        {{ 'Horario: '+ evento.eHorario }}
-        <br>
-        Fecha:  {{evento.eFechaInicio |  date: 'dd MMMM' }} al {{ evento.eFechaTermino | date:'longDate' }}
-        <br>
-        {{ 'Capacidad: '+ evento.eCapacidad }}
-        <br>
-        {{ 'Lugar: ' + evento.l_idlugar }}
-      </h5>
+      <b>
+          {{ 'Horario: '+ evento.eHorario }}
+          <br>
+          Fecha:  {{evento.eFechaInicio |  date: 'dd MMMM' }} al {{ evento.eFechaTermino | date:'longDate' }}
+          <br>
+          {{ 'Capacidad: '+ evento.eCapacidad }}
+          <br>
+          {{ 'Lugar: ' + evento.l_idlugar }}
+      </b>
       <p>
         <button mat-raised-button color="warn" (click)='deleteEvento()'>Eliminar</button>
       </p>

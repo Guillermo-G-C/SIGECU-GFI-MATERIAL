@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Eventos } from '../../models/eventos';
+import { Evento } from '../../models/evento';
 import { map } from 'rxjs/operators';
 import { Route } from '@angular/router';
 import { EventosService } from '../../services/eventos.service';
@@ -11,7 +11,7 @@ import { EventosService } from '../../services/eventos.service';
 })
 export class EventosListComponent implements OnInit {
 
-  eventos: Eventos[];
+  eventos: Evento[];
 
   constructor(/*private route: Route,*/ private eventosServices: EventosService) { }
 

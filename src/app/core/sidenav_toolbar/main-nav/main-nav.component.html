@@ -10,8 +10,11 @@
                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <!--Contenido lateral agregado-->
     <mat-sidenav class="example-sidenav the-dark-theme"
-    #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+                  #snav
+                  [mode]="mobileQuery.matches ? 'over' : 'side'"
+                  [opened]="!mobileQuery.matches"
+                  [fixedInViewport]="mobileQuery.matches"
+                  fixedTopGap="56">
       <mat-nav-list>
         <app-menu-list-item *ngFor="let item of navSigecu" [item]="item"></app-menu-list-item>
       </mat-nav-list>

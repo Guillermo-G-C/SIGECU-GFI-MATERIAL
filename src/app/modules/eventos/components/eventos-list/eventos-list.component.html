@@ -7,12 +7,14 @@
   -->
   <ng-container *ngIf="eventos">
     <!--app-eventos-details *ngFor="let eventoItem of eventos " [evento]="eventoItem" 
-      fxFlex="0 1 calc(33% - 1em)"
-      fxFlex.lt-md="0 1 calc(50% - 1em)"
-      fxFlex.lt-sm="0 1 calc(100% - 1em)"
+      fxFlex="0 1 calc(33% - 2em)"
+      fxFlex.lt-md="0 1 calc(50% - 2em)"
+      fxFlex.lt-sm="0 1 calc(100% - 2em)"
       style="margin-bottom: 1em"></app-eventos-details-->
-      <app-eventos-details *ngFor="let eventoItem of eventos " [evento]="eventoItem" 
-      fxFlex = " 50% "  fxFlex.gt-sm = " 100% "
+
+    <app-eventos-details *ngFor="let eventoItem of eventos " [evento]="eventoItem" 
+      fxFlex = "0 1 calc(50% - 2em)"
+      fxFlex.lt-md = "0 1 calc(100% - 2em)"
       style="margin-bottom: 1em"></app-eventos-details>
   </ng-container>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Eventos } from '../../models/eventos';
+import { Evento } from '../../models/evento';
 import { EventosService } from '../../services/eventos.service';
 import { EventosListComponent } from '../eventos-list/eventos-list.component';
 
@@ -12,7 +12,7 @@ export class EventosDetailsComponent implements OnInit {
 
   id: number = 5;
   //evento: Eventos;
-  @Input() evento: Eventos;
+  @Input() evento: Evento;
 
   constructor(private eventoService: EventosService, private eventosListComponent: EventosListComponent) { }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Eventos } from '../../models/eventos';
+import { Evento } from '../../models/evento';
 import { EventosService } from '../../services/eventos.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,15 +12,15 @@ import { Router } from '@angular/router';
 export class AddEventoComponent implements OnInit {
   isValidFormSubmitted = null;
   addForm: FormGroup;
-  evento: Eventos = new Eventos();
+  evento: Evento = new Evento();
   private formSubmitAttempt: boolean;
 
   constructor(private formBuilder: FormBuilder, private router: Router , private eventosService: EventosService) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
-      idEventos: [''],
-      c_idcursos: ['', Validators.required],
+      idEvento: [''],
+      c_idcurso: ['', Validators.required],
       i_idinstructor: ['', Validators.required],
       eDescripcion: ['', Validators.required],
       eFechaInicio: ['', Validators.required],
@@ -54,7 +54,16 @@ export class AddEventoComponent implements OnInit {
         .subscribe( data => {
           this.router.navigate(['eventoList'])
         });
+      this.addForm.reset();
     }
+  }
+
+  revert() {
+    // Resets to blank object
+    //this.addForm.reset();
+
+    // Resets to provided model
+    this.addForm.reset({ personalData: new Evento(), requestType: '', text: '' });
   }
 
 }
