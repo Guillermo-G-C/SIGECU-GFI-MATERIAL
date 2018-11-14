@@ -60,10 +60,10 @@ export class AddEventoComponent implements OnInit {
 
   revert() {
     // Resets to blank object
-    //this.addForm.reset();
+    this.addForm.reset();
 
     // Resets to provided model
-    this.addForm.reset({ personalData: new Evento(), requestType: '', text: '' });
+    //this.addForm.reset({ evento: new Evento(), requestType: '', text: '' });
   }
 
 }

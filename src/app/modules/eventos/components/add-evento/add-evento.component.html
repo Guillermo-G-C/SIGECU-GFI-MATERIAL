@@ -90,15 +90,22 @@
           <input matInput placeholder="Capacidad del evento" formControlName="eCapacidad" type="number" required>
         </mat-form-field>
         
-        <p fxFlex = "0 1 calc(25% - 1em)">
+        <p fxFlex = "0 1 calc(50% - 1em)">
           <!--mat-radio-group formControlName="eEstatus" required>  
             <mat-radio-button value="true">Activo</mat-radio-button>  
             <mat-radio-button value="false">Inactivo</mat-radio-button>  
           </mat-radio-group-->
-          <mat-checkbox [color]="addForm.get('eEstatus').value == true ? 'accent' : 'primary'" formControlName="eEstatus" indeterminate="true" required>Estatus Del Evento</mat-checkbox>
+          <mat-checkbox #estatus 
+                        [class.error]="estatus.indeterminate && isValidFormSubmitted != null && !isValidFormSubmitted"
+                        [color]="addForm.get('eEstatus').value == true ? 'accent' : 'primary'"
+                        formControlName="eEstatus"
+                        indeterminate="true"
+                        required>Estatus Del Evento</mat-checkbox>
           <mat-error *ngIf="addForm.get('eEstatus').invalid && isValidFormSubmitted != null && !isValidFormSubmitted">  
-            <span [hidden]="!addForm.get('eEstatus').value =='' && addForm.get('eEstatus').value == false">Please select any eEstatus !!!</span>  
+            <span [hidden]="!estatus.indeterminate">Porfavor selecciona un estatus del evento!!!</span>  
           </mat-error>
+
+          
         </p>
       </mat-card-content>
       <mat-divider></mat-divider>  
@@ -107,7 +114,7 @@
         <button mat-raised-button type="reset" fxFlex = "0 1 calc(25% - 1em)"
                 (click)="revert()"
                 [disabled]="addForm.pristine">RESET</button>
-        <button mat-raised-button color="primary" type="submit" fxFlex = "0 1 calc(75% - 1em)">CREAR EVENTO</button>
+        <button mat-raised-button color="primary" type="submit" fxFlex = "0 1 calc(70% - 1em)">CREAR EVENTO</button>
       </mat-card-actions>
       <mat-card-footer>
       </mat-card-footer>
@@ -120,5 +127,9 @@
   <p>
     Form Status: {{ addForm.status }}
   </p>
+  <br>
+  <br>
+  <br>
+  <br>
 
 </div>

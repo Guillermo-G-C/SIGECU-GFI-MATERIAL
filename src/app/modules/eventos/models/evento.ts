@@ -1,7 +1,10 @@
+import { Curso } from "./curso";
+import { Instructor } from "./instructor";
+
 export class Evento {
     idEventos: number;
-    c_idcursos: number;
-    i_idinstructor: number;
+    curso: Curso;
+    instructor: Instructor;
     eDescripcion: string;
     eFechaInicio: Date;
     eFechaTermino: Date;
