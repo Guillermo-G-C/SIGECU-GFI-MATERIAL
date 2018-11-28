@@ -7,7 +7,7 @@ import { MaterialModule } from './material.module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './core/auth/auth.module';
 import { EventosModule } from './modules/eventos.module';
 import { EventosRoutingModule } from './modules/eventos-routing.module';
 
@@ -15,6 +15,9 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { ExampleDashboardComponent } from './example-dashboard/example-dashboard.component';
 import { ExampleTreeComponent } from './example-tree/example-tree.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './core/token.interceptor';
+import { ErrorInterceptor } from './core/error-interceptor';
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -35,7 +38,20 @@ registerLocaleData(localeEs);
     EventosRoutingModule,
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'es-MX' }
+    {
+      provide: LOCALE_ID,
+      useValue: 'es-MX',
+    },
+    { 
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

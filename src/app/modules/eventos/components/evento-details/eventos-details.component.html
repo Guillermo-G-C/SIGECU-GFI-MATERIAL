@@ -1,30 +1,41 @@
 <mat-card class="example-card" *ngIf="evento" id="{{evento.idEventos}}">
     <mat-card-header>
-      <mat-card-title>{{ evento.curso.cNombre }}</mat-card-title>
-      <mat-card-subtitle><b>{{ 'Instructor: '+ evento.instructor.iNombre+' '+evento.instructor.iPaterno+' '+evento.instructor.iMaterno }}</b></mat-card-subtitle>
+      <mat-card-title>{{ evento.curso }}</mat-card-title>
+      <mat-card-subtitle><b>{{ 'Instructor: '+ evento.instructor  }}</b></mat-card-subtitle>
     </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content>
       <p>
+        <b>Descripción: </b><br>
         {{ evento.eDescripcion }}
       </p>
       <p>
+        <b>Programa: </b><br>
         {{evento.ePrograma}}
       </p>
     </mat-card-content>
     <mat-divider></mat-divider>
     <mat-card-footer>
       <b>
-          {{ 'Horario: '+ evento.eHorario }}
-          <br>
           Fecha:  {{evento.eFechaInicio |  date: 'dd MMMM' }} al {{ evento.eFechaTermino | date:'longDate' }}
+          <br>
+          Horario: {{ evento.eHoraEntrada }} - {{ evento.eHoraSalida }}
           <br>
           {{ 'Capacidad: '+ evento.eCapacidad }}
           <br>
-          {{ 'Lugar: ' + evento.l_idlugar }}
+          {{ 'Lugar: ' + evento.lugar }}
+          <br>
+          <mat-checkbox #estatus 
+          (click)="doSomething()"
+          color="accent"
+          [checked]="evento.eEstatus"
+          labelPosition="before"
+          required>Estatus Del Evento: {{ evento.eEstatus == true? 'Publicado' : 'No Publicado' }}</mat-checkbox>
       </b>
-      <p>
-        <button mat-raised-button color="warn" (click)='deleteEvento()'>Eliminar</button>
+      <p fxLayout="row wrap"
+      fxLayoutAlign="space-evenly stretch">
+        <button mat-stroked-button fxFlex = "0 1 calc(50% - 1em)" color="primary" (click)='deleteEvento(evento)'>{{ 'Eliminar' | uppercase }}<mat-icon>delete</mat-icon></button>
+        <button mat-flat-button fxFlex = "0 1 calc(50% - 1em)" color="primary" (click)='editarEvento(evento)'>{{ 'Editar' | uppercase }}<mat-icon>edit</mat-icon></button>
       </p>
     </mat-card-footer>
   </mat-card>

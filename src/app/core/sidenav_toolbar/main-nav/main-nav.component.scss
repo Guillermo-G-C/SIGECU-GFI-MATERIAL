@@ -42,3 +42,7 @@ h1.example-app-name {
      `<body>` to be our scrolling element for mobile layouts. */
   flex: 1 0 auto;
 }
+
+mat-sidenav-content{
+  background-color: mat-color($sigecu-app-primary, 50);
+}

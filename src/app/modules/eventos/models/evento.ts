@@ -1,16 +1,14 @@
-import { Curso } from "./curso";
-import { Instructor } from "./instructor";
-
 export class Evento {
     idEventos: number;
-    curso: Curso;
-    instructor: Instructor;
+    curso: string;
+    instructor: string;
     eDescripcion: string;
     eFechaInicio: Date;
     eFechaTermino: Date;
     ePrograma: string;
-    eHorario: string;
+    eHoraEntrada: string;
+    eHoraSalida: string;
     eCapacidad: string;
     eEstatus: string;
-    l_idlugar: number;
+    lugar: string;
 }

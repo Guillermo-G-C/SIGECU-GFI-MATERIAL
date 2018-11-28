@@ -13,9 +13,9 @@
             <!--button type="button" mat-icon-button matPrefix color="primary">
               <mat-icon matPrefix>perm_identity</mat-icon>
             </button-->
-            <mat-label>UserName</mat-label>
-            <input matInput placeholder="Enter your password" type="text" formControlName="userName" required autocomplete="off">
-            <mat-error *ngIf="isFieldInvalid('userName')">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Enter your password" type="text" formControlName="username" required autocomplete="off">
+            <mat-error *ngIf="isFieldInvalid('username')">
               Please inform your user name
             </mat-error>
             <button type="button" mat-icon-button matSuffix color="primary">
@@ -44,6 +44,11 @@
                   color="primary"
                   class="full-width-input"
                   [disabled]="!formLAuth.form.valid">SIGN IN</button>
+        </p>
+        <p>
+          <mat-error *ngIf="error">
+            {{ error }}
+          </mat-error>
         </p>
       </form>
     </mat-card-content>

@@ -6,13 +6,7 @@
     <div *ngFor="let eventoItem of eventos | async">
   -->
   <ng-container *ngIf="eventos">
-    <!--app-eventos-details *ngFor="let eventoItem of eventos " [evento]="eventoItem" 
-      fxFlex="0 1 calc(33% - 2em)"
-      fxFlex.lt-md="0 1 calc(50% - 2em)"
-      fxFlex.lt-sm="0 1 calc(100% - 2em)"
-      style="margin-bottom: 1em"></app-eventos-details-->
-
-    <app-eventos-details *ngFor="let eventoItem of eventos " [evento]="eventoItem" 
+    <app-eventos-details *ngFor="let eventoItem of eventos" [evento]="eventoItem" 
       fxFlex = "0 1 calc(50% - 2em)"
       fxFlex.lt-md = "0 1 calc(100% - 2em)"
       style="margin-bottom: 1em"></app-eventos-details>

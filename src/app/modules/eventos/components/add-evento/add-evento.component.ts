@@ -3,6 +3,12 @@ import { Evento } from '../../models/evento';
 import { EventosService } from '../../services/eventos.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Curso } from '../../models/curso';
+import { CursosService } from '../../services/cursos.service';
+import { Instructor } from '../../models/instructor';
+import { Lugar } from '../../models/lugar';
+import { InstructorService } from '../../services/instructor.service';
+import { LugaresService } from '../../services/lugares.service';
 
 @Component({
   selector: 'app-add-evento',
@@ -13,27 +19,49 @@ export class AddEventoComponent implements OnInit {
   isValidFormSubmitted = null;
   addForm: FormGroup;
   evento: Evento = new Evento();
+  cursos: Curso[];
+  instructores: Instructor[];
+  lugares: Lugar[];
   private formSubmitAttempt: boolean;
 
-  constructor(private formBuilder: FormBuilder, private router: Router , private eventosService: EventosService) { }
+  constructor(private formBuilder: FormBuilder,
+              private router: Router, 
+              private eventosService: EventosService,
+              private cursosService: CursosService,
+              private instructoresService: InstructorService,
+              private lugaresService: LugaresService) { }
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
       idEvento: [''],
-      c_idcurso: ['', Validators.required],
-      i_idinstructor: ['', Validators.required],
+      curso: ['', Validators.required],
+      instructor: ['', Validators.required],
       eDescripcion: ['', Validators.required],
       eFechaInicio: ['', Validators.required],
       eFechaTermino: ['', Validators.required],
       ePrograma: ['', Validators.required],
-      eHorario: ['', Validators.required],
+      eHoraEntrada: ['', Validators.required],
+      eHoraSalida: ['', Validators.required],
       eCapacidad: ['', Validators.required],
-      eEstatus: ['', Validators.requiredTrue],
-      l_idlugar: ['', Validators.required]
+      eEstatus: ['',Validators.required],
+      lugar: ['', Validators.required]
     })
-  }
 
-  isFieldInvalid(field: string) { // {6}
+    this.cursosService.getCursosList()
+      .subscribe(data => {
+        this.cursos = data;
+      })
+    this.instructoresService.getInstructoresList()
+      .subscribe(data => {
+        this.instructores = data;
+      })
+    this.lugaresService.getLugaresList()
+      .subscribe(data => {
+        this.lugares = data;
+      })
+    }
+
+  isFieldInvalid(field: string) {
     return (
       (!this.addForm.get(field).valid && this.addForm.get(field).touched) ||
       (this.addForm.get(field).untouched && this.formSubmitAttempt)
@@ -54,7 +82,7 @@ export class AddEventoComponent implements OnInit {
         .subscribe( data => {
           this.router.navigate(['eventoList'])
         });
-      this.addForm.reset();
+      //this.addForm.reset();
     }
   }
 

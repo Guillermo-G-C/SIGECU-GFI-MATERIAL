@@ -1,21 +1,25 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
   <!--Aqui el toolbar es parte del contenido-->
+  <mat-divider *ngIf="isLoggedIn$ | async as isLoggedIn"></mat-divider>
   <mat-toolbar class="mat-elevation-z2 example-toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
     <h1 class="example-app-name">SIGECU GFI</h1>
+    <span class="fill-remaining-space"></span>
+    <!--button mat-button routerLink="login">Login</button-->
+    <button *ngIf="isLoggedIn$ | async" mat-button (click)="onLogout()">Logout</button>
   </mat-toolbar>
 
   <!--Contenedor estructural para el contenido y sidenav-->
-  <mat-sidenav-container class="example-sidenav-container"
+  <mat-sidenav-container  class="example-sidenav-container"
                           [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <!--Contenido lateral agregado-->
-    <mat-sidenav class="example-sidenav the-dark-theme"
+    <mat-sidenav  class="example-sidenav the-dark-theme"
                   #snav
                   [mode]="mobileQuery.matches ? 'over' : 'side'"
                   [opened]="!mobileQuery.matches"
                   [fixedInViewport]="mobileQuery.matches"
                   fixedTopGap="56">
-      <mat-nav-list>
+      <mat-nav-list *ngIf="isLoggedIn$ | async">
         <app-menu-list-item *ngFor="let item of navSigecu" [item]="item"></app-menu-list-item>
       </mat-nav-list>
     </mat-sidenav>

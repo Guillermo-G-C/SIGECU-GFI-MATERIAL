@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Evento } from '../../models/evento';
 import { EventosService } from '../../services/eventos.service';
 import { EventosListComponent } from '../eventos-list/eventos-list.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-eventos-details',
@@ -10,31 +11,32 @@ import { EventosListComponent } from '../eventos-list/eventos-list.component';
 })
 export class EventosDetailsComponent implements OnInit {
 
-  id: number = 5;
-  //evento: Eventos;
   @Input() evento: Evento;
 
-  constructor(private eventoService: EventosService, private eventosListComponent: EventosListComponent) { }
+  constructor(private router: Router,
+              private eventoService: EventosService,
+              private eventosListComponent: EventosListComponent) { }
 
   ngOnInit() {
-    //this.id = 4;
-
-    //this.reloadData();
   }
 
-  reloadData() {
-    this.eventoService.getEventoById(this.id)
-    .subscribe(data => this.evento = data);
-  }
-
-
-  deleteEvento(){
+  deleteEvento(evento: Evento){
     this.eventoService.deleteEvento(this.evento.idEventos)
       .subscribe( data =>{
-        console.log(data);
-        this.eventosListComponent.reloadData();
+        alert("Evento eliminado correctamente!");
+        this.eventosListComponent.eventos = this.eventosListComponent.eventos.filter( u => u !== evento);
       },
-    error => console.log(error));
+      error => console.log("Error"+error));
+  }
+
+  editarEvento(evento: Evento) { 
+    window.localStorage.removeItem("editEventoId");
+    window.localStorage.setItem("editEventoId", this.evento.idEventos.toString());
+    this.router.navigate(['editEvento']);
+  }
+  
+  doSomething() {
+    return false;
   }
 
 }

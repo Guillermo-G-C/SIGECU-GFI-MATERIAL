@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Evento } from '../../models/evento';
-import { map } from 'rxjs/operators';
-import { Route } from '@angular/router';
 import { EventosService } from '../../services/eventos.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-eventos-list',
@@ -20,6 +19,7 @@ export class EventosListComponent implements OnInit {
       .subscribe( data => {
         this.eventos = data;
       });
+    this.reloadData();
   }
 
   reloadData(){

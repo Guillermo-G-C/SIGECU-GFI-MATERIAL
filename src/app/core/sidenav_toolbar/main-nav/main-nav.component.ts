@@ -1,31 +1,43 @@
 import {MediaMatcher} from '@angular/cdk/layout';
-import {ChangeDetectorRef, Component, ViewChild, ElementRef, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, ViewChild, ElementRef, OnDestroy, OnInit} from '@angular/core';
 
 import {NavItem} from './../nav-item';
+import { AuthService } from '../../auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-main-nav',
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.scss'],
 })
-export class MainNavComponent implements OnDestroy {
+export class MainNavComponent implements OnInit ,OnDestroy {
   @ViewChild('appDrawer') appDrawer: ElementRef;
+
+  isLoggedIn$: Observable<boolean>;
 
   /**SideNav */
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, private authService: AuthService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+  ngOnInit() {
+    this.isLoggedIn$ = this.authService.isLoggedIn;
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
   /**SideNav */
+
+  onLogout(){
+    this.authService.logout();
+  }
 
   navSigecu: NavItem[] = [
     {
@@ -40,12 +52,12 @@ export class MainNavComponent implements OnDestroy {
         {
           displayName: 'Crear Evento',
           iconName: 'create',
-          route: 'addEvento'//Pendiente
+          route: 'addEvento'
         },
         {
           displayName: 'Ver  Listado de Eventos',
           iconName: 'format_list_bulleted',
-          route: 'eventoList'//Pendiente
+          route: 'eventoList'
         }/*,
         {
           displayName: 'Cancelar Eventos',
@@ -67,142 +79,16 @@ export class MainNavComponent implements OnDestroy {
     {
       displayName: 'Instructores',
       iconName: 'supervisor_account',
-      children: []
-    }
-  ];
-
-
-  /**NavItem */
-  navItems: NavItem[] = [
-    {
-      displayName: 'DevFestFL',
-      iconName: 'recent_actors',
       children: [
         {
-          displayName: 'Speakers',
-          iconName: 'group',
-          children: [
-            {
-              displayName: 'Michael Prentice',
-              iconName: 'person',
-              route: 'michael-prentice',
-              children: [
-                {
-                  displayName: 'Create Enterprise UIs',
-                  iconName: 'star_rate',
-                  route: 'material-design'
-                }
-              ]
-            },
-            {
-              displayName: 'Stephen Fluin',
-              iconName: 'person',
-              route: 'stephen-fluin',
-              children: [
-                {
-                  displayName: 'What\'s up with the Web?',
-                  iconName: 'star_rate',
-                  route: 'what-up-web'
-                }
-              ]
-            },
-            {
-              displayName: 'Mike Brocchi',
-              iconName: 'person',
-              route: 'mike-brocchi',
-              children: [
-                {
-                  displayName: 'My ally, the CLI',
-                  iconName: 'star_rate',
-                  route: 'my-ally-cli'
-                },
-                {
-                  displayName: 'Become an Angular Tailor',
-                  iconName: 'star_rate',
-                  route: 'become-angular-tailer'
-                }
-              ]
-            }
-          ]
+          displayName: 'Crear curso',
+          iconName: 'create',
+          route: ''
         },
         {
-          displayName: 'Sessions',
-          iconName: 'speaker_notes',
-          route: 'feedback'
-        },
-        {
-          displayName: 'Feedback',
-          iconName: 'feedback',
-          route: 'feedback'
-        }
-      ]
-    },
-    {
-      displayName: 'Disney',
-      iconName: 'videocam',
-      children: [
-        {
-          displayName: 'Speakers',
-          iconName: 'group',
-          route: 'what-up-web'
-        },
-        {
-          displayName: 'Sessions',
-          iconName: 'speaker_notes',
-          children: [
-            {
-              displayName: 'Create Enterprise UIs',
-              iconName: 'star_rate',
-              route: 'material-design'
-            },
-            {
-              displayName: 'What\'s up with the Web?',
-              iconName: 'star_rate',
-              route: 'what-up-web'
-            },
-            {
-              displayName: 'My ally, the CLI',
-              iconName: 'star_rate',
-              route: 'my-ally-cli'
-            },
-            {
-              displayName: 'Become an Angular Tailor',
-              iconName: 'star_rate',
-              route: 'become-angular-tailer'
-            }
-          ]
-        },
-        {
-          displayName: 'Feedback',
-          iconName: 'feedback',
-          route: 'feedback'
-        }
-      ]
-    },
-    {
-      displayName: 'Orlando',
-      iconName: 'movie_filter',
-
-    },
-    {
-      displayName: 'Maleficent',
-      disabled: true,
-      iconName: 'report_problem',
-      children: [
-        {
-          displayName: 'Speakers',
-          iconName: 'group',
-          route: 'feedback'
-        },
-        {
-          displayName: 'Sessions',
-          iconName: 'speaker_notes',
-          route: 'feedback'
-        },
-        {
-          displayName: 'Feedback',
-          iconName: 'feedback',
-          route: 'feedback'
+          displayName: 'Ver  Listado de Cursos',
+          iconName: 'format_list_bulleted',
+          route: ''
         }
       ]
     }

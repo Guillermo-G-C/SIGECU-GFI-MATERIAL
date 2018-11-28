@@ -1,0 +1,21 @@
+@import '~@angular/material/theming';
+@import '../../../../../styles.scss';
+
+.full-width-input {
+    width: 100%;
+}
+
+mat-card{
+    padding: 1em;
+}
+
+mat-divider{
+    position: relative !important;
+    width: calc(100% - 1em) !important;
+    margin: 0 auto;
+    padding-bottom: 1em;
+}
+
+.error {
+    color: mat-color($sigecu-app-warn);
+}

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Evento } from '../models/evento';
+import { Observable } from 'rxjs';
+import { ApiResponse } from '../models/api-response';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,12 @@ export class EventosService {
     return this.http.get(`${this.baseUrl}/${id}`);
   }*/
 
-  getEventosList() {
+  /*getEventosList() {
     return this.http.get<Evento[]>(this.baseUrl);
-  }
-  /*getEventosList(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
   }*/
+  getEventosList(): Observable<any> {
+    return this.http.get(this.baseUrl);
+  }
 
   createEvento(evento: Evento) {
     return this.http.post(this.baseUrl, evento);
@@ -33,7 +34,7 @@ export class EventosService {
     return this.http.post(`${this.baseUrl}`, evento);
   }*/
   
-  updateEvento(evento: Evento) {
+  updateEvento(evento: Evento): Observable<any> {
     return this.http.put(this.baseUrl +'/'+ evento.idEventos, evento);
   }
   /*updateEvento(id: number, value: any): Observable<Object> {
@@ -51,8 +52,8 @@ export class EventosService {
 
 
 /**
+https://www.devglan.com/angular/angular-7-crud-example
 https://grokonez.com/spring-framework/spring-data/spring-boot-angular-6-example-spring-data-jpa-rest-mysql-crud-example
 https://developer.okta.com/blog/2018/08/22/basic-crud-angular-7-and-spring-boot-2
-https://www.devglan.com/angular/angular-6-example
 
  */

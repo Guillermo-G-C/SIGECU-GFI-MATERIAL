@@ -6,12 +6,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './../material.module';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import { AddEventoComponent } from './eventos/components/add-evento/add-evento.component';
+import { EditEventoComponent } from './eventos/components/edit-evento/edit-evento.component';
 
 @NgModule({
   declarations: [
     EventosDetailsComponent,
     EventosListComponent,
-    AddEventoComponent
+    AddEventoComponent,
+    EditEventoComponent
   ],
   imports: [
     CommonModule,

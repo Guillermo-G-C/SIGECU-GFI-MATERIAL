@@ -2,22 +2,23 @@
       fxLayoutAlign="space-evenly stretch"
       style="margin-top: 1em">
       
-  <mat-card fxFlex="0 1 calc(75% - 1em)"
+  <mat-card *ngIf="cursos"
+            fxFlex="0 1 calc(75% - 1em)"
             fxFlex.lt-md = "0 1 calc(100% - 2em)">
-    <form #eventoForm="ngForm" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <form #eventoForm="ngForm" [formGroup]="editForm" (ngSubmit)="onSubmit()">
       <mat-card-header>
-        <mat-card-title><h2>Crear Evento</h2></mat-card-title>
+        <mat-card-title><h2>Editar Evento</h2></mat-card-title>
       </mat-card-header>
       <mat-card-content fxLayout="row wrap"
                         fxLayout.lt-md="column"
                         fxLayoutAlign="space-evenly stretch">
-        <input type="hidden" formControlName="idEvento">
+        <input type="hidden" formControlName="idEventos">
   
         <mat-form-field appearance="fill" fxFlex = "0 1 calc(50% - 1em)">
           <mat-label>Curso a impartir</mat-label>
-          <mat-select placeholder="Curso a impartir" formControlName="curso" required>
+          <mat-select  placeholder="Curso a impartir" formControlName="curso" required>
             <mat-option>-Selecciona-</mat-option>
-            <mat-option *ngFor="let curso of cursos" [value]="curso.idCursos">{{ curso.cNombre }}</mat-option>
+            <mat-option *ngFor="let c of cursos" [value]="c.idCursos" (click)="cursoS(c)">{{ c.cNombre }}</mat-option>
           </mat-select>
           <!--mat-error *ngIf="c_idcursos.hasError('required')">Please choose an c_idcursos</mat-error-->
         </mat-form-field>
@@ -90,24 +91,21 @@
             <mat-radio-button value="false">Inactivo</mat-radio-button>  
           </mat-radio-group-->
           <mat-checkbox #estatus 
-                        [class.error]="estatus.indeterminate && isValidFormSubmitted != null && !isValidFormSubmitted"
-                        [color]="addForm.get('eEstatus').value == true ? 'accent' : 'primary'"
+                        color="accent"
                         formControlName="eEstatus"
-                        indeterminate="true"
                         >Estatus Del Evento</mat-checkbox>
-          <mat-error *ngIf="addForm.get('eEstatus').invalid && isValidFormSubmitted != null && !isValidFormSubmitted">  
+          <mat-error *ngIf="editForm.get('eEstatus').invalid && isValidFormSubmitted != null && !isValidFormSubmitted">  
             <span [hidden]="!estatus.indeterminate">Porfavor selecciona un estatus del evento!!!</span>  
           </mat-error>
+
           
         </p>
       </mat-card-content>
       <mat-divider></mat-divider>  
       <mat-card-actions fxLayout="row wrap"
                         fxLayoutAlign="space-evenly stretch">
-        <button mat-raised-button type="reset" fxFlex = "0 1 calc(25% - 1em)"
-                (click)="revert()"
-                [disabled]="addForm.pristine">RESET</button>
-        <button mat-raised-button color="primary" type="submit" fxFlex = "0 1 calc(70% - 1em)">CREAR EVENTO</button>
+        <button mat-raised-button type="reset" fxFlex = "0 1 calc(25% - 1em)">RESET</button>
+        <button mat-raised-button color="primary" type="submit" fxFlex = "0 1 calc(70% - 1em)">GUARDAR CAMBIOS</button>
       </mat-card-actions>
       <mat-card-footer>
       </mat-card-footer>
@@ -115,11 +113,11 @@
   </mat-card>
 
   <mat-card fxFlex="0 1 calc(75% - 1em)">
+    <!--p>
+      Form Value: {{ editForm.value | json }}
+    </p-->
     <p>
-      Form Value: {{ addForm.value | json }}
-    </p>
-    <p>
-      Form Status: {{ addForm.status }}
+      Form Status: {{ editForm.status }}
     </p>
   </mat-card>
 </div>
